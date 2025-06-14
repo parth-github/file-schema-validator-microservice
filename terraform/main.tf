@@ -54,10 +54,9 @@ resource "aws_ecs_service" "fastapi_service" {
   task_definition = aws_ecs_task_definition.fastapi_task.arn
   launch_type     = "FARGATE"
   desired_count   = 1
-
-}
-
-resource "aws_network_interface" "fastapi_service_network_interface" {
-  subnet_id = "subnet-09eb2d7b54c56ffd8" # Replace with your subnet ID
-  security_groups = ["sg-06d8730202d2fa529"] # Replace with your security group ID
+  network_configuration {
+    subnets          = ["subnet-09eb2d7b54c56ffd8"] # Replace with your subnet ID
+    security_groups  = ["sg-06d8730202d2fa529"] # Replace with your security group ID
+    assign_public_ip = true
+  }
 }
