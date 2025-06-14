@@ -14,6 +14,19 @@
 
 from fastapi import FastAPI
 import boto3
+import logging
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+# Configure logging
+logging.info("Starting FastAPI application")
+# Ensure that the logger is set up to capture logs in the ECS environment
+# This logger can be used to log messages throughout the application
+
+# Import logging to capture logs in the ECS environment
+# Import the logging module to handle application logs
+# Import the FastAPI framework for building the web application
+
 # Create a FastAPI instance
 app = FastAPI()
 
