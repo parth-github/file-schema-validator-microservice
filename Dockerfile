@@ -18,8 +18,8 @@ EXPOSE 80
 
 
 # To build the Docker image, run:
-# docker build -t my-fastapi-app .
+# docker build -t fastapi-fargate .
 # To run the Docker container, use:
-# docker run -d -p 80:80 my-fastapi-app
+# docker run -d -p 80:80 fastapi-fargate
 # Note: Ensure that the 'app' directory contains your FastAPI application code, including 'main.py'.
 # This Dockerfile is designed to be used in a development or production environment where you want to deploy a FastAPI application with AWS integration.
