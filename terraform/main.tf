@@ -56,3 +56,8 @@ resource "aws_ecs_service" "fastapi_service" {
   desired_count   = 1
 
 }
+
+resource "aws_network_interface" "fastapi_service_network_interface" {
+  subnet_id = "subnet-09eb2d7b54c56ffd8" # Replace with your subnet ID
+  security_groups = ["sg-06d8730202d2fa529"] # Replace with your security group ID
+}
