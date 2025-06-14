@@ -1,0 +1,1 @@
+# Manual JSON schema validator
