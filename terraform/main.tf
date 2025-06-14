@@ -1,15 +1,4 @@
 # Main Terraform module
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.0"
-    }
-  }
-
-  required_version = ">= 0.12"
-}
-
 provider "aws" {
   region = "us-east-1"
 }
@@ -68,8 +57,8 @@ resource "aws_ecs_service" "fastapi_service" {
 
 
   network_configuration {
-    subnets         = ["subnet-xxxxxxxx"]
+    subnets          = ["subnet-xxxxxxxx"]
     assign_public_ip = true
-    security_groups = ["sg-xxxxxxxx"]
+    security_groups  = ["sg-xxxxxxxx"]
   }
 }
