@@ -18,7 +18,7 @@ resource "aws_ecs_task_definition" "fastapi_task" {
   container_definitions = jsonencode([
     {
       name      = "fastapi-container"
-      image     = "http://177099687008.dkr.ecr.us-east-1.amazonaws.com/fastapi-fargate:latest"
+      image     = "177099687008.dkr.ecr.us-east-1.amazonaws.com/fastapi-fargate:latest"
       essential = true
       portMappings = [{
         containerPort = 80
