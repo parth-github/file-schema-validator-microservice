@@ -2,3 +2,5 @@ fastapi
 boto3
 pytest
 moto
+uvicorn
+#logging
