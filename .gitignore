@@ -1,0 +1,26 @@
+.venv/
+
+__pycache__/
+
+#add terraform files
+
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform/
+# Ignore Terraform plan files
+*.tfplan
+# Ignore Terraform lock files
+.terraform.lock.hcl
+# Ignore Terraform workspace files
+.terraform.tfstate
+# Ignore Terraform module cache
+.terraform/modules/
+# Ignore Terraform provider binaries
+.terraform/providers/
+# Ignore Terraform CLI configuration files
+.terraformrc
+# Ignore Terraform variable files
+.terraform.tfvars
+
+terraform/alb.tf~
