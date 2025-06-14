@@ -1,5 +1,10 @@
 # FastAPI entrypoint
-
+#
+#
+#   uvicorn main:app --reload --log-level info
+#
+#
+#
 # This is a simple FastAPI application that lists S3 buckets
 # when accessed at the /list-buckets endpoint.
 # It is designed to run in an AWS ECS Fargate environment.
@@ -14,31 +19,27 @@
 
 from fastapi import FastAPI
 import boto3
-# import logging
-# Configure logging
-#logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-# logger = logging.getLogger(__name__)
-# # Configure logging
-# logger.setLevel(logging.INFO)
-# logger.info("Starting FastAPI application")
-# Ensure that the logger is set up to capture logs in the ECS environment
-# This logger can be used to log messages throughout the application
+from logger_setup import logger  # Assuming logger_setup.py is in the same directory
 
-# Import logging to capture logs in the ECS environment
-# Import the logging module to handle application logs
-# Import the FastAPI framework for building the web application
+logger.info(f"Starting FastAPI application: {__name__}")
 
-# Create a FastAPI instance
 app = FastAPI()
+
+@app.middleware("http")
+async def log_requests(request, call_next):
+    logger.info(f"Request: {request.method} - {request.url}")
+    response = await call_next(request)
+    logger.info(f"Response status: {response.status_code} for {request.method} {request.url} from {request.client.host}:{request.client.port}")
+    return response
 
 
 # Define the root endpoint and a bucket listing endpoint
 @app.get("/")
-def read_root():
+async def read_root():
     return {"message": "FastAPI running in ECS Fargate"}
 
 @app.get("/list-buckets")
-def list_buckets():
+async def list_buckets():
     s3 = boto3.client('s3')
     buckets = s3.list_buckets()
     return {"buckets": [b['Name'] for b in buckets['Buckets']]}

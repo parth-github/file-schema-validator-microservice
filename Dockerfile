@@ -1,15 +1,20 @@
 # Dockerfile for service
 # This Dockerfile sets up a FastAPI application with AWS SDK (boto3) and Uvicorn as the ASGI server.
-# It uses a slim Python 3.11 image to keep the image size small.
-FROM python:3.11-slim
+# It uses a slim Python 3.10 image to keep the image size small.
+FROM python:3.10-slim
 
 # The application code is copied into the /app directory, and the necessary Python packages are installed.
 WORKDIR /app
-COPY ./app /app
+COPY ./app .
+
+
+# Install system dependencies required for the application.
+# RUN apt-get update && apt-get install -y python3-distutils python3-dev
 
 # Install python dependencies required for the application.
-COPY requirements.txt /app/requirements.txt
-RUN pip install -r /app/requirements.txt
+# COPY ./requirements.txt /app/requirements.txt
+RUN pip install --upgrade pip setuptools wheel packaging
+RUN pip install -r requirements.txt
 
 # The application is run using Uvicorn, listening on port 80.
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]

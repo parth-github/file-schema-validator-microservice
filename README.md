@@ -22,7 +22,7 @@ This project is a Python-based microservice deployed on **AWS ECS Fargate** to v
 ecs-schema-validator-microservice/
 ├── app/               # FastAPI microservice code
 ├── tests/             # Unit, integration, and security test cases
-├── terraform/         # ECS, ALB, IAM, Secrets, Step Functions
+├── infra/         # ECS, ALB, IAM, Secrets, Step Functions
 ├── scripts/           # Optional CLI scripts
 ├── .github/workflows/ # GitHub Actions deployment pipeline
 ├── Dockerfile         # Container image definition

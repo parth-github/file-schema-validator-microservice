@@ -1,5 +1,5 @@
 .venv/
-
+access.log
 __pycache__/
 
 #add terraform files
