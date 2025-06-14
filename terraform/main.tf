@@ -56,6 +56,7 @@ resource "aws_ecs_service" "fastapi_service" {
   launch_type     = "FARGATE"
   desired_count   = 1
 
+
   network_configuration {
     subnets         = ["subnet-xxxxxxxx"]
     assign_public_ip = true
