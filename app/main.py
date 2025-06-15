@@ -19,6 +19,7 @@
 
 from fastapi import FastAPI
 import boto3
+from botocore.exceptions import NoCredentialsError, PartialCredentialsError
 from logger_setup import logger  # Assuming logger_setup.py is in the same directory
 
 logger.info(f"Starting FastAPI application: {__name__}")
@@ -40,6 +41,13 @@ async def read_root():
 
 @app.get("/list-buckets")
 async def list_buckets():
-    s3 = boto3.client('s3')
-    buckets = s3.list_buckets()
-    return {"buckets": [b['Name'] for b in buckets['Buckets']]}
+    try:
+        s3 = boto3.client('s3')
+        buckets = s3.list_buckets()
+        return {"buckets": [b['Name'] for b in buckets['Buckets']]}
+    except NoCredentialsError:
+        logger.error("Error listing S3 buckets: No credentials found")
+        return {"error": "Failed to list buckets"}
+    except PartialCredentialsError:
+        logger.error("Error listing S3 buckets: Incomplete credentials found")
+        return {"error": "Failed to list buckets"}

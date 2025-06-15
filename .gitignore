@@ -1,5 +1,9 @@
 .venv/
 access.log
+.env
+.github/
+# Ignore Python bytecode files  
+
 __pycache__/
 
 #add terraform files
