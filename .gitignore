@@ -1,4 +1,8 @@
 .venv/
+access.log
+.env
+.github/
+# Ignore Python bytecode files  
 
 __pycache__/
 
